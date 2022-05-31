@@ -21,12 +21,11 @@
 //         result += ':' + str[i];
 //       } else {
 //         result += str[i];
-//       }
+//       };
 //     }
 //   }
 //   return result;  
 // }
-
 // console.log(delimiter(num));
 
 
@@ -41,30 +40,30 @@
 
 */
 
-// var text = 'как долго идут часы, но быстро годы пролетают';
+var text = 'как долго идут часы, но быстро годы пролетают';
 
-// function wordUpperCase(str) {
-//   var textUpper = [];
-//   var arrText = str.split(' ');
-//   for(var i = 0; i < arrText.length; i++) {
-//     arrText.toString(arrText[i]);
-//     var strWord = (arrText[i]);
-//     function strWordUpper(str){
-//       var wordUpper = '';
-//       for(var i = 0; i < str.length; i++) {
-//         if(i == 0) {
-//           wordUpper += str[i].toUpperCase();
-//         } else {
-//           wordUpper += str[i].toLowerCase();
-//         };
-//       };
-//       return textUpper.push(wordUpper);
-//     };
-//     strWordUpper(strWord);
-//   };
-//   return textUpper.join(' ')
-// };
-// var result = wordUpperCase(text);
+function wordUpperCase(str) {
+  var textUpper = [];
+  var arrText = str.split(' ');
+  for(var i = 0; i < arrText.length; i++) {
+    arrText.toString(arrText[i]);
+    var strWord = arrText[i];
+    function strWordUpper(str){
+      var wordUpper = '';
+      for(var i = 0; i < str.length; i++) {
+        if(i == 0) {
+          wordUpper += str[i].toUpperCase();
+        } else {
+          wordUpper += str[i].toLowerCase();
+        };
+      };
+      return textUpper.push(wordUpper);
+    };
+    strWordUpper(strWord);
+  };
+  return textUpper.join(' ');
+};
+var result = wordUpperCase(text);
 // console.log(result);
 
 
@@ -77,3 +76,43 @@
     на выход: это хорошее слово из заглавных хорошее слово каждого хорошее слово'
 
 */
+
+var text = 'это плохоеслово1 из заглавных плохоеслово2 каждого плохоеслово3 плохоеслово4 плохоеслово5';
+function badWordCut(str) {
+  var textAdmin = ['плохоеслово1', 'плохоеслово2', 'плохоеслово3', 'плохоеслово4', 'плохоеслово5'];
+  var badText = str.split(' ');
+  textAdmin.forEach(function(item) {
+    for(var i = 0; i < badText.length; i++) {
+      if(badText[i] === item) {
+        badText.splice(i, 1, 'хорошее слово')
+      } else {};
+    };
+  });
+  return badText.join(' ');
+};
+var result = badWordCut(text);
+// console.log(result);
+
+/* 
+    TASK 3
+
+    Напишите функцию, которая проверяет длину строки, и если она больше 50ти символов,
+    то обрежьте её до 50 символов и вместо последних трех, поставьте "..." (троеточие)
+    
+*/
+
+var text = 'извлекает часть строки и возвращает новую строку. Принимает два значения: начало и конец части строки которую необходимо';
+
+function CutStr(str) {
+  var cutText = '';
+  for(var i = 0; i < 50; i++){
+    if(i + 1 === 50) {
+      cutText = str.slice(0, i + 1);
+      var arrCutPoint = cutText.split('');
+      arrCutPoint.splice(i - 2,3,'.','.','.');
+    } else {};
+  };
+  return arrCutPoint.join('');
+};
+var result = CutStr(text);
+// console.log(result);
