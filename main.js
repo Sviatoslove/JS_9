@@ -17,9 +17,9 @@ actor.gender = 'male';
 actor.movies = ['Погреб у озера', 'Побег из тоннеля', 'Апокалипсдрон', 'Фермер не в поле', 'Турникмэн и блинчики'];
 actor.married = false;
 
-console.log(actor); 
+// console.log(actor); 
 delete actor.married;
-console.log(actor);
+// console.log(actor);
 
 
 
@@ -40,7 +40,7 @@ function isEmptyObj(obj){
 };
 
 var result = isEmptyObj(mostPeople);
-console.log(result);
+// console.log(result);
 
 
 /* 
@@ -73,20 +73,18 @@ function highPaidStaff(obj) {
     for(key in obj) {
         if(highPay < obj[key]) {
             highPay = obj[key];
-        }else {
-            highPay += 0
         };
     };
     for(key in obj) {
         if(highPay === obj[key]) {
             highPaidStaff += key;
-        }else {};
+        };
     }
     return highPaidStaff;
 };
 
 var result = highPaidStaff(staff);
-console.log(result);
+// console.log(result);
 
 
 /* 
@@ -115,13 +113,13 @@ var staffWithGender = {
             var percent = 10;
             if(this[key].gender === 'female') {
                 this[key].salary += Math.round(this[key].salary/100*percent);
-            }else{};
+            };
         };
     }
 };
 
 staffWithGender.method()
-console.log(staffWithGender);
+// console.log(staffWithGender);
 
 
 /* 
@@ -147,13 +145,12 @@ var harmonist = {
     info: function() {
         for(key in this) {
             if(typeof this[key] !== 'function' && typeof this[key] !== 'object') {
-            console.log(key + ': ' + this[key]);
+                console.log(key + ': ' + this[key]);
             }if(Array.isArray(this[key])) {
                 console.log(key + ': ' + this[key].join('\n      '));
-            }
-            else {};
+            };
         };
     }
 };
 
-harmonist.info();
+// harmonist.info();
