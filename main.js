@@ -33,7 +33,7 @@ delete actor.married;
 var mostPeople = {};
 
 function isEmptyObj(obj){
-    for(key in obj) {
+    for(var key in obj) {
         return false;
     }
     return true;
@@ -68,18 +68,14 @@ var staff = {
 
 
 function highPaidStaff(obj) {
-    var highPaidStaff = ('');
+    var highPaidStaff = '';
     var highPay = 0;
-    for(key in obj) {
+    for(var key in obj) {
         if(highPay < obj[key]) {
             highPay = obj[key];
+            highPaidStaff = key;
         };
     };
-    for(key in obj) {
-        if(highPay === obj[key]) {
-            highPaidStaff += key;
-        };
-    }
     return highPaidStaff;
 };
 
@@ -108,8 +104,8 @@ var staffWithGender = {
     'Marina' : {salary: 5187, gender: 'female'},
     'Oleg' : {salary: 3309, gender: 'male'},
     'Anna' : {salary: 2304, gender: 'female'},
-    method : function () {
-        for(key in this){
+    addPremium : function () {
+        for(var key in this){
             var percent = 10;
             if(this[key].gender === 'female') {
                 this[key].salary += Math.round(this[key].salary/100*percent);
@@ -118,7 +114,7 @@ var staffWithGender = {
     }
 };
 
-staffWithGender.method()
+staffWithGender.addPremium()
 // console.log(staffWithGender);
 
 
@@ -142,8 +138,8 @@ var harmonist = {
     growth: 185,
     albom: 'Мирская любовь',
     list: ['Иди домой', 'Подожди, постой', 'Уйди не мешай', 'Ты не дождёшься', 'Тебя никто не звал'],
-    info: function() {
-        for(key in this) {
+    getInfo: function() {
+        for(var key in this) {
             if(typeof this[key] !== 'function' && typeof this[key] !== 'object') {
                 console.log(key + ': ' + this[key]);
             }if(Array.isArray(this[key])) {
@@ -153,4 +149,4 @@ var harmonist = {
     }
 };
 
-// harmonist.info();
+// harmonist.getInfo();
