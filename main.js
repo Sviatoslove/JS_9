@@ -22,7 +22,9 @@ function yellowCubeStep() {
         wrapperEl[i + 1].classList.add('yellow');
         break;
       };
-      if(i === (wrapperEl.length - 2)){break};
+      if(i === (wrapperEl.length - 2)){
+        break
+      };
     };
   };
   function yellowLeftStep(){
@@ -41,7 +43,9 @@ function yellowCubeStep() {
         wrapperEl[i + 4].classList.add('yellow');
         break;
       };
-      if(i + 4 > (wrapperEl.length - 2 )){break};
+      if(i + 4 > (wrapperEl.length - 2 )){
+        break
+      };
     };
   };
   function yellowUpStep(){
