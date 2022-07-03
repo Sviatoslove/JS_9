@@ -1,126 +1,136 @@
 /* 
     TASK 1
 
-    Напишите функцию конструктор, которая создает объект 'comment' со свойствами :
-    - id
-    - author
-    - text
+    Необходимо найти факториал числа 5 с помощью рекурсии
 
-    Создайте с помощью этого конструктора минимум 3 объекта
 */
+var f = 1;
 
-function Comment(id, author, text) {
-  this.id = id;
-  this.author = author;
-  this.text = text 
+function getFactorial(n) {
+  if(n === 1) {
+    return f;
+  }else {
+    f = f * n;
+  }
+  return getFactorial(n - 1);
 };
 
-var comment1 = new Comment(1, 'Иттай', 'Я готов даже умереть с тобой!');
-var comment2 = new Comment(2, 'Давид', 'Вам-то что до этого, сыновья Церу́и?');
-var comment3 = new Comment(3, 'Авессало́м', 'Лучше бы я оставался там.');
-
-// console.log(comment1);
-// console.log(comment2);
-// console.log(comment3);
+var result = getFactorial(5);
+// console.log(result);
 
 
 /*
     TASK 2
 
-    var rex = {
-      animal: 'dog',
-      makeSound: function(){
-        console.log('Гав Гав');
-      }
-    };
+    Напишите функцию customSetInterval(funcToExecute, interval)
+    с помощью рекурсии и setTimeout,
+    которая будет повторять функционал встроенного метода setInterval
+    встроенный метод setInterval принимает два аргумента:
+    первый аргумент - это функция, которая выполняется через заданный интервал времени
+    второй аргумент - это временной интервал в миллисекундах.
 
-    var charlie = {
-      animal: 'dog',
-      runFast : function() {
-        console.log('I can run very fast');
-      }
+    функция для вызова:
+    function executeMe() {
+        console.log('123')
     }
 
-    var martin = {
-      animal: 'dog'
-    }
-
-    У нас есть три собаки. Собака rex умеет лаять, собака charlie умеет быстро бегать, а вот собака martin к сожалению ничего из этого не может. 
-    Научите собаку charlie лаять, а собаку martin и лаять и быстро бегать.
-
+    пример вызова вашей функции:  
+    customSetInterval(executeMe, 1000)
+    в результате в консоли каждую секунду будет выводиться строка 123
 */
 
-var rex = {
-  animal: 'dog',
-  makeSound: function(){
-    console.log('Гав Гав');
-  }
+function executeMe() {
+  console.log('123');
 };
 
-var charlie = {
-  animal: 'dog',
-  runFast : function() {
-    console.log('I can run very fast');
-  }
-}
+function customSetInterval(funcToExecute, interval) {
+  var timerId = setTimeout(function init() {
+    funcToExecute();
+    timerId = setTimeout(init, interval);
+  }, interval);
+};
 
-var martin = {
-  animal: 'dog'
-}
-
-charlie.__proto__ = rex;
-martin.__proto__ = charlie;
-
-// charlie.makeSound();
-// martin.makeSound();
-// martin.runFast();
+// customSetInterval(executeMe, 1000);
 
 
 /* 
     TASK 3
 
-    Создайте объект работника с именем Евгений, которому 33 года, который работает дизайнером, и у которого зарплата 2500$ в месяц. 
-    Сделайте так, чтобы при проверке этого задания я не смог с помощью перебора свойств этого объекта узнать какая зарплата у этого работника.
-    Само свойство зарплат, и его значение должно присутствовать в объекте.
+    Необходимо сделать часы с помощью setInterval и объекта Date. 
+    Они должны быть в формате ЧАСЫ:МИНУТЫ:СЕКУНДЫ.
+    И если у нас сейчас 1 час ночи, то должно показываться 01, а не просто 1. 
+    Если сейчас время один час пять минут, 
+    то у вас должно выводиться 01:05, а не 1:5
 
 */
 
-var workMan = Object.create({}, {
-  name: {
-    value: 'Евгений',
-    enumerable: true
-  },
-  age: {
-    value: 33,
-    enumerable: true
-  },
-  position: {
-    value: 'designer',
-    enumerable: true
-  },
-  salary: {
-    value: 2500 + '$'
-  }
-});
+function initTime() {
+  var now = new Date();
+  function addZero(num) {
+    if(num >= 0 && num < 10) {
+      return '0' + num;
+    }else{
+      return num;
+    };
+  };
+  console.log(addZero(now.getHours()) + ':' + addZero(now.getMinutes()) + ':' + addZero(now.getSeconds()));
+}
+
+// setInterval(initTime, 1000);
 
 
 /* 
 
     TASK 4
-
-    Выведите на экран текущую дату-время в формате '00:00:00 31.12.2010'.
-    Также напишите функцию, которая будет добавлять 0 перед днями и месяцами, которые состоят из одной цифры (из 1.9.2014 сделает 01.09.2014)
+    Создайте рекурсивную функцию, 
+    которая принимает в качестве параметра целое положительное число n,
+    введённое с клавиатуры,
+    и возвращает сумму всех чисел от 1 до n.
 
 */
 
-var now = new Date();
+var sum = 0;
 
-function addZero(num) {
-  if(num > 0 && num < 10) {
-    return '0' + num;
-  }else{
-    return num;
+function initSum(n) {
+  if(n < 1){
+    return sum;
+  }else {
+    sum += n;
   };
+  return initSum(n - 1);
 };
 
-// alert (now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds() + ' ' + addZero(now.getDate()) + '.' + addZero(now.getMonth() + 1) + '.' + now.getFullYear());
+var result = initSum(1000);
+// console.log(result);
+
+
+/* 
+    TASK 5
+    Напишите функцию, которая будет выводить Имя и Фамилию юзера.
+    Функция должна быть одна, а юзеров - пять. 
+    Функция должна быть без параметров.
+    
+*/
+
+function printFullName () {
+  console.log(this.firstName + ' ' + this.lastName);
+};
+
+function CreateUser(firstName, lastName){
+  this.firstName = firstName;
+  this.lastName = lastName;
+};
+
+CreateUser.prototype.printFullName = printFullName;
+
+var maria = new CreateUser('Maria', 'Pupkina');
+var alex = new CreateUser('Alex', 'Ushkin');
+var gavriil = new CreateUser('Gavriil', 'Saint');
+var johny = new CreateUser('Johny', 'Bravo');
+var kris = new CreateUser('Kris', 'Kozin');
+
+// maria.printFullName();
+// alex.printFullName();
+// gavriil.printFullName();
+// johny.printFullName();
+// kris.printFullName();
