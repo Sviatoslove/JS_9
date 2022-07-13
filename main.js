@@ -4,15 +4,17 @@
     Необходимо найти факториал числа 5 с помощью рекурсии
 
 */
-var f = 1;
-
 function getFactorial(n) {
-  if(n === 1) {
-    return f;
-  }else {
-    f = f * n;
-  }
-  return getFactorial(n - 1);
+  var f = 1;
+  function x(n) {
+    if(n === 1) {
+      return f;
+    }else {
+      f = f * n;
+    };
+    return x(n - 1);
+  };
+  return x(n);
 };
 
 var result = getFactorial(5);
@@ -89,15 +91,17 @@ function initTime() {
 
 */
 
-var sum = 0;
-
 function initSum(n) {
-  if(n < 1){
-    return sum;
-  }else {
-    sum += n;
+  var sum = 0;
+  function x(n) {
+    if(n < 1){
+      return sum;
+    }else {
+      sum += n;
+    };
+    return x(n - 1);
   };
-  return initSum(n - 1);
+  return x(n);
 };
 
 var result = initSum(1000);
